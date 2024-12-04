@@ -1,0 +1,80 @@
+@import "../../Constans/colors.scss";
+::ng-deep {
+  .p-tabview .p-tabview-nav {
+    justify-content: center;
+  }
+
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    color: $primary-color;
+  }
+  .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+    background-color: $primary-color;
+  }
+}
+
+.poster {
+  max-width: 100%;
+}
+
+.overview {
+  line-height: 1.5;
+}
+.stat {
+  display: flex;
+  margin-bottom: 1rem;
+  .label {
+    width: 10rem;
+    font-weight: bold;
+  }
+  .value {
+    color: $primary-color;
+  }
+}
+
+.video-photo {
+  width: 100%;
+  height: 100%;
+}
+
+.actor {
+  padding: 10px;
+  img {
+    width: 100%;
+  }
+
+  div {
+    text-align: center;
+  }
+}
+
+::ng-deep {
+  /* Small */
+  @media (max-width: 768px) {
+    .col-2 {
+      width: calc(100% / 2);
+    }
+    .col-4 {
+      width: 100%;
+    }
+  }
+
+  /* Medium */
+  @media (min-width: 777px) {
+    .col-2 {
+      width: calc(100% / 3);
+    }
+    .col-4 {
+      width: calc(100% / 2);
+    }
+  }
+
+  /* Large */
+  @media (min-width: 1200px) {
+    .col-2 {
+      width: calc(100% / 4);
+    }
+    .col-4 {
+      width: calc(100% / 3);
+    }
+  }
+}

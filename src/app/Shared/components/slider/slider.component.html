@@ -1,0 +1,30 @@
+@if(slides()) {
+<div class="slider">
+  @for (movie of slides(); track movie.id) { @if ($index===slideIndex()) {
+  <div class="slide" @slideFade>
+    <div class="slide-bg">
+      <img [src]="movieImagePath(movie)" />
+    </div>
+    <div class="slide-pane">
+      <h2 class="title">{{ movie.original_title }}</h2>
+      <div class="meta mb-4">
+        <div class="rating mb-1">
+          <i class="pi pi-star"></i>
+          <span>{{ movie.vote_average }}/</span>
+          <span>10</span>
+        </div>
+        <div class="votes mb-1">
+          <i class="pi pi-users"></i>
+          <span>{{ movie.vote_count }}</span>
+        </div>
+        <div class="release-date">
+          <i class="pi pi-calendar"></i>
+          <span>{{ movie.release_date }}</span>
+        </div>
+      </div>
+      <div class="description">{{ movie.overview }}</div>
+    </div>
+  </div>
+  } }
+</div>
+}

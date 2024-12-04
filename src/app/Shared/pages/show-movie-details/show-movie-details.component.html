@@ -1,0 +1,114 @@
+@if (isFetching() && !erorr()) {
+<h2 class="fallback-text">Fetching avaliable movies...</h2>
+}@if (erorr()) {
+<h2 class="fallback-text">{{ erorr() }}</h2>
+} @if (movie().length>0) {
+<app-slider [slides]="movie()" [isHeader]="true" />
+<p-tabView>
+  <p-tabPanel header="Overview">
+    <div class="grid">
+      <div class="col-3">
+        <img
+          class="poster"
+          [src]="imageOfPosterPath"
+          [alt]="movie()[0].title"
+        />
+      </div>
+      <div class="col-9">
+        <h2>Overview</h2>
+        <p class="overview">{{ movie()[0].overview }}</p>
+        <div class="stat">
+          <div class="label">Relase Date:</div>
+          <div class="value">
+            {{ movie()[0].release_date | date : "shortDate" }}
+          </div>
+        </div>
+        <div class="stat">
+          <div class="label">Language:</div>
+          <div class="value">
+            {{ movie()[0].original_language }}
+          </div>
+        </div>
+        <div class="stat">
+          <div class="label">Revenue:</div>
+          <div class="value">{{ movie()[0].revenue | currency }}</div>
+        </div>
+        <div class="stat">
+          <div class="label">Duration:</div>
+          <div class="value">{{ movie()[0].runtime }}</div>
+        </div>
+        <div class="stat">
+          <div class="label">Status:</div>
+          <div class="value">{{ movie()[0].status }}</div>
+        </div>
+        <div class="stat">
+          <div class="label">Genres:</div>
+          @for (genre of movie()[0].genres; track genre.id) {
+          <span class="value"> {{ genre.name }} </span>
+          }
+        </div>
+      </div>
+    </div>
+    @if (actors().length>0) {
+    <p-carousel
+      [value]="actors()"
+      [numVisible]="6"
+      [numScroll]="3"
+      [circular]="false"
+    >
+      <ng-template let-actor pTemplate="item">
+        <div class="actor">
+          @if (actor.profile_path) {
+          <img [src]="imageSize.medium + actor.profile_path" alt="" />
+          }@else {
+          <img src="images/actor.jpg" width="100%" height="100%" alt="" />
+          }
+          <div>{{ actor.character }}</div>
+          <div>({{ actor.name }})</div>
+        </div>
+      </ng-template>
+    </p-carousel>
+    }@else {
+    <h2 class="fallback-text">
+      Something went wrong fetching the actors, please try again later.
+    </h2>
+    }
+  </p-tabPanel>
+  <p-tabPanel header="Videos" #hello>
+    @if (videos().length>0) {
+    <div class="grid">
+      @for (video of videos(); track $index) {
+      <div class="col-4">
+        <app-video-embed [video]="video" />
+      </div>
+      }
+    </div>
+    }@else {
+    <h2 class="fallback-text">There are no videos for this movie.</h2>
+    }
+  </p-tabPanel>
+  <p-tabPanel header="Photos">
+    <div class="grid">
+      @if (photos().length>0) {
+      <div class="grid">
+        @for (photo of photos(); track $index) {
+        <div class="col-2">
+          <p-image
+            class="video-photo"
+            [src]="imageSize.large + photo.file_path"
+            alt="Image"
+            width="100%"
+            [preview]="true"
+          />
+        </div>
+        }
+      </div>
+
+      }@else {
+      <h2 class="fallback-text">There are no photos for this movie.</h2>
+      }
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+}

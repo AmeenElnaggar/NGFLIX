@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="grid genres-links">
+    @for (genre of genresList(); track genre.id) {
+
+    <a
+      (click)="findMoviesByGenre(genre.id)"
+      (keydown)="findMoviesByGenre(genre.id)"
+      role="button"
+      aria-hidden="true"
+    >
+      {{ genre.name }}
+    </a>
+    }
+  </div>
+
+  <div class="grid">
+    @for (movie of moviesList().results; track movie.id) {
+    <div class="col-3">
+      <app-movie-card-item [movie]="movie" />
+    </div>
+
+    }
+  </div>
+</div>

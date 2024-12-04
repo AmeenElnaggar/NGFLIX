@@ -1,0 +1,35 @@
+@import "../../../../Shared/Constans/colors.scss";
+.genres-links {
+  a {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    background-color: $primary-color;
+    padding: 5px;
+    margin-right: 10px;
+  }
+}
+
+::ng-deep {
+  /* Small */
+  @media (max-width: 768px) {
+    .col-3 {
+      width: calc(100% / 2);
+    }
+  }
+
+  /* Medium */
+  @media (min-width: 777px) {
+    .col-3 {
+      width: calc(100% / 2);
+    }
+  }
+
+  /* Large */
+  @media (min-width: 1200px) {
+    .col-3 {
+      width: calc(100% / 4);
+    }
+  }
+}

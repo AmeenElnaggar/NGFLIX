@@ -1,0 +1,10 @@
+<a class="show-item" [routerLink]="['/details', movie().id]">
+  <div class="show-item-rating">
+    <i class="pi pi-star"></i>
+    <span>{{ movie().vote_average | fixedNumber }}/10</span>
+  </div>
+  <div class="show-item-image">
+    <img [src]="imagePath" [alt]="movie().original_title" />
+  </div>
+  <div class="show-item-title">{{ movie().title }}</div>
+</a>

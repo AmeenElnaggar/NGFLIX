@@ -1,0 +1,38 @@
+@if (isFetching()&&!error()) {
+<h2 class="fallback-text">Fetching avaliable movies...</h2>
+}@else if (error()) {
+<h2 class="fallback-text">{{error()}}</h2>
+} @else {
+<div class="banner container">
+  <div class="upcoming-category">
+    <h1>Upcoming Movies</h1>
+    <div class="grid">
+      @for (movie of upcomingMovies(); track movie.id) {
+      <div class="col-2">
+        <app-movie-card-item [movie]="movie" />
+      </div>
+      }
+    </div>
+  </div>
+  <div class="topRated-category">
+    <h1>Top Rated Movies</h1>
+    <div class="grid">
+      @for (movie of topRatedMovies(); track movie.id) {
+      <div class="col-2">
+        <app-movie-card-item [movie]="movie" />
+      </div>
+      }
+    </div>
+  </div>
+  <div class="tvShows-category">
+    <h1>Tv Shows</h1>
+    <div class="grid">
+      @for (tvShow of tvShowsMovies(); track tvShow.id) {
+      <div class="col-2">
+        <app-movie-card-item [movie]="tvShow" />
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}

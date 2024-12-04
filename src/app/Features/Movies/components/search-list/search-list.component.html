@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="grid">
+    <div class="col-6">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="enterdInputSearch"
+          (change)="onSearchMovieChanges()"
+        />
+      </span>
+    </div>
+  </div>
+  @if (isFetching()&&!error()) {
+  <h2 class="fallback-text">Fetching avaliable movies...</h2>
+  } @if (error()) {
+  <h2 class="fallback-text">
+    'Something went wrong fetching the avaliable movies, please try again
+    later.'
+  </h2>
+  } @else if (searchList().results.length>0) {
+
+  <div class="grid">
+    @for (movie of searchList().results; track movie.id) {
+    <div class="col-2">
+      <app-movie-card-item [movie]="movie" />
+    </div>
+
+    }
+  </div>
+  <div class="grid">
+    <div class="col-12">
+      <p-paginator
+        (onPageChange)="onPageChangesFromPagnation($event)"
+        [rows]="20"
+        [totalRecords]="searchList().total_results"
+      />
+    </div>
+  </div>
+  }
+</div>

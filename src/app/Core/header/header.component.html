@@ -1,0 +1,13 @@
+<header>
+  <nav class="navbar">
+    <a routerLink="/" class="navbar-logo">
+      <img src="images/logo.png" alt="ngFlix Logo" />
+    </a>
+    <ul class="navbar-link">
+      <li><a routerLink="/">Home</a></li>
+      <li><a [routerLink]="['movies-list']">Movies</a></li>
+      <li><a [routerLink]="['tv-show']">TV Shows</a></li>
+      <li><a [routerLink]="['genres']">Genres</a></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="grid">
+    <div class="col-6">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="enterdInputSearch"
+          (change)="onSearchTvShowChanges()"
+        />
+      </span>
+    </div>
+  </div>
+  @if (isFetching()&&!error()) {
+  <h2 class="fallback-text">Fetching avaliable movies...</h2>
+  } @if (error()) {
+  <h2 class="fallback-text">
+    'Something went wrong fetching the avaliable movies, please try again
+    later.'
+  </h2>
+  } @else if (tvShowsList().results.length>0) {
+  <div class="grid">
+    @for (tvShow of tvShowsList().results; track tvShow.id) {
+    <div class="col-2">
+      <app-movie-card-item [movie]="tvShow" />
+    </div>
+    }
+  </div>
+  <div class="grid">
+    <div class="col-12">
+      <p-paginator
+        (onPageChange)="onPageChangesFromPagnation($event)"
+        [rows]="20"
+        [totalRecords]="tvShowsList().total_results"
+      />
+    </div>
+  </div>
+  }
+</div>
