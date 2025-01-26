@@ -13,6 +13,6 @@ export class ErrorService {
   }
 
   clearError() {
-    this._error.set('');
+    this._error.set('')
   }
 }
