@@ -42,4 +42,4 @@ export class SliderComponent implements OnInit {
   movieImagePath(movie: Movie) {
     return `${IMAGE_BASE_URL}/w1280${movie.backdrop_path}`;
   }
-}
+};
